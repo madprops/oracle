@@ -61,7 +61,3 @@ Oracle.get_random_int = function (min, max) {
 Oracle.el = function (query, root = document) {
 	return root.querySelector(query)
 }
-
-Oracle.els = function (query, root = document) {
-	return Array.from(root.querySelectorAll(query))
-}
