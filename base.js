@@ -6,15 +6,15 @@ Oracle.init = function () {
 	Oracle.play("atmo")
 
 	setTimeout(function () {
-		Oracle.show_word(1)
+		Oracle.show_word()
 	}, Oracle.show_delay)
 
 	setTimeout(function () {
-		Oracle.show_word(2)
+		Oracle.show_word()
 	}, Oracle.show_delay * 2)
 
 	setTimeout(function () {
-		Oracle.show_word(3)
+		Oracle.show_word()
 	}, Oracle.show_delay * 3)
 
 	setTimeout(function () {
