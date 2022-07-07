@@ -1,5 +1,5 @@
 const Oracle = {}
-Oracle.card_delay = 1400
+Oracle.show_delay = 1400
 
 Oracle.init = function () {
 	Oracle.show_cards()
@@ -28,19 +28,19 @@ Oracle.show_word = function () {
 Oracle.show_cards = function () {
 	setTimeout(function () {
 		Oracle.show_word(1)
-	}, Oracle.card_delay)
+	}, Oracle.show_delay)
 
 	setTimeout(function () {
 		Oracle.show_word(2)
-	}, Oracle.card_delay * 2)
+	}, Oracle.show_delay * 2)
 
 	setTimeout(function () {
 		Oracle.show_word(3)
-	}, Oracle.card_delay * 3)
+	}, Oracle.show_delay * 3)
 
 	setTimeout(function () {
 		Oracle.show_card()
-	}, Oracle.card_delay * 4)
+	}, Oracle.show_delay * 4)
 }
 
 Oracle.get_random_int = function (min, max) {
