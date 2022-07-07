@@ -19,7 +19,7 @@ Oracle.init = function () {
 
 	setTimeout(function () {
 		Oracle.show_card()
-	}, Oracle.show_delay * 4)	
+	}, Oracle.show_delay * 4)
 }
 
 Oracle.show_word = function () {
@@ -59,9 +59,9 @@ Oracle.get_random_int = function (min, max) {
 }
 
 Oracle.el = function (query, root = document) {
-  return root.querySelector(query)
+	return root.querySelector(query)
 }
 
 Oracle.els = function (query, root = document) {
-  return Array.from(root.querySelectorAll(query))
+	return Array.from(root.querySelectorAll(query))
 }
