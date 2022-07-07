@@ -2,30 +2,9 @@ const Oracle = {}
 Oracle.show_delay = 1400
 
 Oracle.init = function () {
-	Oracle.show_cards()
 	Oracle.set_volume()
 	Oracle.play("atmo")
-}
 
-Oracle.el = function (query, root = document) {
-  return root.querySelector(query)
-}
-
-Oracle.els = function (query, root = document) {
-  return Array.from(root.querySelectorAll(query))
-}
-
-Oracle.show_word = function () {
-	let word = OracleWords[Oracle.get_random_int(0, OracleWords.length - 1)]
-	let el = document.createElement("div")
-	el.textContent = word
-	el.classList.add("word")
-	Oracle.el("#words").append(el)
-	el.style.opacity = 1
-	Oracle.play("pup")
-}
-
-Oracle.show_cards = function () {
 	setTimeout(function () {
 		Oracle.show_word(1)
 	}, Oracle.show_delay)
@@ -40,11 +19,17 @@ Oracle.show_cards = function () {
 
 	setTimeout(function () {
 		Oracle.show_card()
-	}, Oracle.show_delay * 4)
+	}, Oracle.show_delay * 4)	
 }
 
-Oracle.get_random_int = function (min, max) {
-	return Math.floor(Math.random() * (max - min + 1)) + min
+Oracle.show_word = function () {
+	let word = OracleWords[Oracle.get_random_int(0, OracleWords.length - 1)]
+	let el = document.createElement("div")
+	el.textContent = word
+	el.classList.add("word")
+	Oracle.el("#words").append(el)
+	el.style.opacity = 1
+	Oracle.play("pup")
 }
 
 Oracle.show_card = function () {
@@ -67,4 +52,16 @@ Oracle.play = function (what) {
 
 Oracle.set_volume = function () {
 	Oracle.el("#atmo").volume = 0.45
+}
+
+Oracle.get_random_int = function (min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+Oracle.el = function (query, root = document) {
+  return root.querySelector(query)
+}
+
+Oracle.els = function (query, root = document) {
+  return Array.from(root.querySelectorAll(query))
 }
