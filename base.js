@@ -1,5 +1,5 @@
 const Oracle = {}
-Oracle.show_delay = 1340
+Oracle.show_delay = 1441
 
 Oracle.init = function () {
 	Oracle.set_volume()
