@@ -15,13 +15,14 @@ Oracle.els = function (query, root = document) {
   return Array.from(root.querySelectorAll(query))
 }
 
-Oracle.show_word = function (n) {
+Oracle.show_word = function () {
 	let word = OracleWords[Oracle.get_random_int(0, OracleWords.length - 1)]
 	let el = document.createElement("div")
 	el.textContent = word
 	el.classList.add("word")
 	Oracle.el("#words").append(el)
-	el.style.opacity = 1	
+	el.style.opacity = 1
+	Oracle.play("pup")
 }
 
 Oracle.show_cards = function () {

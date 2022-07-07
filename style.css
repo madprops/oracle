@@ -29,7 +29,7 @@ body {
 .word {
 	font-size: 3rem;
 	animation-name: fadein;
-	animation-duration: 1s;
+	animation-duration: 0.8s;
 	animation-timing-function: linear;
 	opacity: 0;
 }
