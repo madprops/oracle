@@ -1,63 +1,63 @@
-const Oracle = {}
-Oracle.show_delay = 1441
+const App = {}
+App.show_delay = 1441
 
-Oracle.init = function () {
-	Oracle.set_volume()
-	Oracle.play("atmo")
+App.init = () => {
+	App.set_volume()
+	App.play(`atmo`)
 
-	setTimeout(function () {
-		Oracle.show_word()
-	}, Oracle.show_delay)
+	setTimeout(() => {
+		App.show_word()
+	}, App.show_delay)
 
-	setTimeout(function () {
-		Oracle.show_word()
-	}, Oracle.show_delay * 2)
+	setTimeout(() => {
+		App.show_word()
+	}, App.show_delay * 2)
 
-	setTimeout(function () {
-		Oracle.show_word()
-	}, Oracle.show_delay * 3)
+	setTimeout(() => {
+		App.show_word()
+	}, App.show_delay * 3)
 
-	setTimeout(function () {
-		Oracle.show_card()
-	}, Oracle.show_delay * 4)
+	setTimeout(() => {
+		App.show_card()
+	}, App.show_delay * 4)
 }
 
-Oracle.show_word = function () {
-	let word = OracleWords[Oracle.get_random_int(0, OracleWords.length - 1)]
-	let el = document.createElement("div")
+App.show_word = () => {
+	let word = App.words[App.get_random_int(0, App.words.length - 1)]
+	let el = document.createElement(`div`)
 	el.textContent = word
-	el.classList.add("word")
-	Oracle.el("#words").append(el)
+	el.classList.add(`word`)
+	App.el(`#words`).append(el)
 	el.style.opacity = 1
-	Oracle.play("pup")
+	App.play(`pup`)
 }
 
-Oracle.show_card = function () {
-	let n = Oracle.get_random_int(1, 22)
+App.show_card = () => {
+	let n = App.get_random_int(1, 22)
 	let fname = `deck/${n}.gif`
 
-	let img = document.createElement("img")
-	img.id = "card"
+	let img = document.createElement(`img`)
+	img.id = `card`
 	img.src = fname
 
-	Oracle.el("#container").append(img)
+	App.el(`#container`).append(img)
 	img.style.opacity = 1
 }
 
-Oracle.play = function (what) {
-	Oracle.el(`#${what}`).pause()
-	Oracle.el(`#${what}`).currentTime = 0
-	Oracle.el(`#${what}`).play()
+App.play = (what) => {
+	App.el(`#${what}`).pause()
+	App.el(`#${what}`).currentTime = 0
+	App.el(`#${what}`).play()
 }
 
-Oracle.set_volume = function () {
-	Oracle.el("#atmo").volume = 0.45
+App.set_volume = () => {
+	App.el(`#atmo`).volume = 0.45
 }
 
-Oracle.get_random_int = function (min, max) {
+App.get_random_int = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-Oracle.el = function (query, root = document) {
+App.el = (query, root = document) => {
 	return root.querySelector(query)
 }
