@@ -127,8 +127,6 @@ let compile_html_to_video = async () => {
   let interval_ms = 100
   let total_frames = (duration_seconds * 1000) / interval_ms
 
-  console.log(`capturing ${total_frames} frames...`)
-
   for (let current_frame = 0; current_frame < total_frames; current_frame++) {
     let start_time = Date.now()
     let frame_string = current_frame.toString().padStart(3, `0`)
@@ -148,11 +146,7 @@ let compile_html_to_video = async () => {
   let output_directory = path.join(current_directory, `videos`)
   await fs.mkdir(output_directory, {recursive: true})
   let output_path = path.join(output_directory, output_name)
-
-  console.log(`generating audio...`)
   let audio_file = await generate_random_audio(duration_seconds)
-
-  console.log(`compiling video with ffmpeg...`)
   let ffmpeg_cmd = `ffmpeg -framerate 10 -i frames/frame_%03d.png -i ${audio_file} -c:v libx264 -c:a aac -pix_fmt yuv420p -shortest ${output_path}`
 
   exec(ffmpeg_cmd, async error => {
@@ -160,8 +154,6 @@ let compile_html_to_video = async () => {
       console.error(`failed to create video:`, error)
     }
     else {
-      console.log(`video compiled successfully: ${output_path}`)
-
       for (let i = 0; i < total_frames; i++) {
         let frame_string = i.toString().padStart(3, `0`)
         await fs.unlink(path.join(frames_directory, `frame_${frame_string}.png`))
@@ -169,7 +161,7 @@ let compile_html_to_video = async () => {
 
       await fs.rmdir(frames_directory)
       await fs.unlink(audio_file)
-      console.log(`cleanup complete`)
+      console.log(output_path)
     }
   })
 }
