@@ -7,14 +7,14 @@ import wavefile from "wavefile"
 let WaveFile = wavefile.WaveFile
 
 let get_available_filename = async (requested_name) => {
-  let output_directory = path.join(process.cwd(), `videos`)
+  let output_directory = path.join(__dirname, `videos`)
   await fs.mkdir(output_directory, {recursive: true})
   let final_name = requested_name
 
   // If no name provided, generate the random one from App.words
   if (!final_name) {
     global.App = {}
-    let words_path = path.join(process.cwd(), `js`, `words.js`)
+    let words_path = path.join(__dirname, `js`, `words.js`)
     let file_content = await fs.readFile(words_path, `utf-8`)
     eval(file_content)
     let words = global.App.words
@@ -105,7 +105,7 @@ let generate_random_audio = async duration_seconds => {
 
   let wav = new WaveFile()
   wav.fromScratch(1, sample_rate, `16`, samples)
-  let audio_path = path.join(process.cwd(), `bg_music.wav`)
+  let audio_path = path.join(__dirname, `bg_music.wav`)
   await fs.writeFile(audio_path, wav.toBuffer())
   return audio_path
 }
@@ -117,7 +117,7 @@ let compile_html_to_video = async () => {
   let page = await browser.newPage()
   await page.setViewport({width: 580, height: 880})
 
-  let current_directory = process.cwd()
+  let current_directory = __dirname
   let target_html = path.join(current_directory, `index.html`)
   let frames_directory = path.join(current_directory, `frames`)
   await fs.mkdir(frames_directory, {recursive: true})
