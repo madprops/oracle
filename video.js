@@ -117,7 +117,17 @@ let generate_random_audio = async duration_seconds => {
 let compile_html_to_video = async () => {
   let requested_name = process.argv[2]
   let output_name = await get_available_filename(requested_name)
-  let browser = await puppeteer.launch()
+
+  let launch_args = [
+    `--no-sandbox`,
+    `--disable-setuid-sandbox`
+  ]
+
+  let browser = await puppeteer.launch({
+    headless: true,
+    args: launch_args
+  })
+
   let page = await browser.newPage()
   await page.setViewport({width: 580, height: 880})
 
