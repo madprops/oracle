@@ -161,7 +161,8 @@ let compile_html_to_video = async () => {
   await fs.mkdir(output_directory, {recursive: true})
   let output_path = path.join(output_directory, output_name)
   let audio_file = await generate_random_audio(duration_seconds)
-  let ffmpeg_cmd = `ffmpeg -framerate 10 -i frames/frame_%03d.png -i ${audio_file} -c:v libx264 -c:a aac -pix_fmt yuv420p -shortest ${output_path}`
+  let frames_input = path.join(frames_directory, `frame_%03d.png`)
+  let ffmpeg_cmd = `ffmpeg -framerate 10 -i ${frames_input} -i ${audio_file} -c:v libx264 -c:a aac -pix_fmt yuv420p -shortest ${output_path}`
 
   exec(ffmpeg_cmd, async error => {
     if (error) {
