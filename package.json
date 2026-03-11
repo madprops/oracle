@@ -1,7 +1,9 @@
 {
   "name": "oracle",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {
-    "puppeteer": "latest"
+    "puppeteer": "latest",
+    "wavefile": "latest"
   }
 }
